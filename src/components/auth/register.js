@@ -1,15 +1,16 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, {useRef} from "react"
+import { Link, useHistory } from "react-router-dom"
 import "./login.css"
 
 export const Register = (props) => {
-    const firstName = React.createRef()
-    const lastName = React.createRef()
-    const email = React.createRef()
-    const bio = React.createRef()
-    const password = React.createRef()
-    const verifyPassword = React.createRef()
-    const passwordDialog = React.createRef()
+    const firstName = useRef()
+    const lastName = useRef()
+    const email = useRef()
+
+    const password = useRef()
+    const verifyPassword = useRef()
+    const passwordDialog = useRef()
+    const history= useHistory()
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -19,7 +20,6 @@ export const Register = (props) => {
                 "username": email.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
-                "bio": bio.current.value,
                 "email": email.current.value,
                 "password": password.current.value
             }
@@ -36,7 +36,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("cashtray_token", res.token)
-                        props.history.push("/")
+                        history.push("/")
                     }
                 })
         } else {
