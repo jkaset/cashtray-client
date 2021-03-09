@@ -1,88 +1,69 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState } from "react"
 
 export const NonsmokerContext = React.createContext()
 
-export const PostProvider = (props) => {
+export const NonsmokerProvider = (props) => {
+
   const [nonsmokers, setNonsmokers] = useState([])
 
-  const getNonmokers = () => {
+  const getNonsmokers = () => {
     return fetch("http://localhost:8000/nonsmokers", {
       "headers": {
-          "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_user_id")}`
       }
-  })
+    })
       .then(r => r.json())
-      .then(setUsers)
-}
-
-      .then(res => res.json())
-      .then(setPosts)
+      .then(setNonsmokers)
   }
 
   const getNonsmokerById = () => {
-    return fetch(`http://localhost:8000/users/${id}`, {
+    return fetch(`http://localhost:8000/nonsmokers/${id}`, {
       "headers": {
-        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_user_id")}`
       }
     })
       .then(r => r.json())
   }
 
-  const getSinglePost = (id) => {
-    return fetch(`http://localhost:8000/posts/${id}`, {
+  const getSingleNonsmoker = (id) => {
+    return fetch(`http://localhost:8000/nonsmokers/${id}`, {
       headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       }
     })
       .then(res => res.json())
-      .then(setPost)
+      .then(setNonsmokers)
   }
 
-  const updatePost = (post) => {
-    return fetch(`http://localhost:8000/posts/${post.id}`, {
-      method: "PUT",
+  const updateNonsmoker = (nonsmoker) => {
+    return fetch(`http://localhost:8000/nonsmokers/${nonsmoker.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       },
-      body: JSON.stringify(post)
+      body: JSON.stringify(nonsmoker)
     })
-      .then(getPosts)
+      .then(getNonsmokers)
   }
 
-  const addPost = (post, tags) => {
-    return fetch("http://localhost:8000/posts", {
+  const addNonsmoker = (nonsmoker) => {
+    return fetch("http://localhost:8000/nonsmokers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       },
-      body: JSON.stringify(post)
+      body: JSON.stringify(nonsmoker)
     })
-      .then((res) => res.json())
-      .then((res) => {
-        addPostTag({
-          post_id: res.id,
-          tag_array: tags
-        })
-        console.log(tags)
-      })
-      .then(getPosts)
+      .then(getNonsmokers)
   }
 
-  const deletePost = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
-      },
-    })
-      .then(getPosts)
-  }
+
 
   return (
-    <PostContext.Provider value={{
-      posts, addPost, getPosts, updatePost, deletePost, getSinglePost, getPostsByUserId, post, setPost, postId, setPostId
+    <NonsmokerContext.Provider value={{
+      nonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
     }}>
       {props.children}
     </PostContext.Provider>

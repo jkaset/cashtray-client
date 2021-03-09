@@ -7,9 +7,9 @@ import { Register } from "./auth/register"
 
 export const Cashtray = (props) => (
   <>
-
-    <Route render={() => {
-      if (localStorage.getItem("cashtray_token")) {
+    <h1>CASHtray</h1>
+    {/* <Route render={() => {
+      if (localStorage.getItem("cashtray_user_id")) {
         return <>
           <Route render={NavBar} />
           <Route render={props => <ApplicationViews {...props} />} />
@@ -20,8 +20,20 @@ export const Cashtray = (props) => (
     }} />
 
 
-    <Route path="/login" render={Login} />
-    <Route path="/register" render={Register} />
+    <Route path="/login" render={() => {
+      if (localStorage.getItem("cashtray_token")) {
+        return <Redirect to="/" />
+      } else {
+        return <Login />
+      }
+    }} />
 
+    <Route path="/register" render={() => {
+      if (localStorage.getItem("cashtray_token")) {
+        return <Redirect to="/" />
+      } else {
+        return <Register />
+      }
+    }} /> */}
   </>
 )
