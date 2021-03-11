@@ -2,8 +2,9 @@ import React, { useState } from "react"
 
 export const NonsmokerContext = React.createContext()
 
-export const NonsmokerProvider = (props) => {
 
+export const NonsmokerProvider = (props) => {
+  
   const [nonsmokers, setNonsmokers] = useState([])
 
   const getNonsmokers = () => {
@@ -16,7 +17,7 @@ export const NonsmokerProvider = (props) => {
       .then(setNonsmokers)
   }
 
-  const getNonsmokerById = () => {
+  const getNonsmokerById = (id) => {
     return fetch(`http://localhost:8000/nonsmokers/${id}`, {
       "headers": {
         "Authorization": `Token ${localStorage.getItem("cashtray_user_id")}`
@@ -37,7 +38,7 @@ export const NonsmokerProvider = (props) => {
 
   const updateNonsmoker = (nonsmoker) => {
     return fetch(`http://localhost:8000/nonsmokers/${nonsmoker.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
@@ -62,10 +63,12 @@ export const NonsmokerProvider = (props) => {
 
 
   return (
+    <>
     <NonsmokerContext.Provider value={{
-      nonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
+      nonsmokers, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
     }}>
       {props.children}
-    </PostContext.Provider>
+    </NonsmokerContext.Provider>
+    </>
   )
 }

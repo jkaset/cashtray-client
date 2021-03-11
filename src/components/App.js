@@ -7,12 +7,12 @@ import { Register } from "./auth/register"
 
 export const Cashtray = (props) => (
   <>
-    <h1>CASHtray</h1>
-    {/* <Route render={() => {
-      if (localStorage.getItem("cashtray_user_id")) {
+   
+    <Route render={() => {
+      if (localStorage.getItem("cashtray_token")) {
         return <>
-          <Route render={NavBar} />
-          <Route render={props => <ApplicationViews {...props} />} />
+          <NavBar />
+          <ApplicationViews />
         </>
       } else {
         return <Redirect to="/login" />
@@ -34,6 +34,6 @@ export const Cashtray = (props) => (
       } else {
         return <Register />
       }
-    }} /> */}
+    }} />
   </>
 )
