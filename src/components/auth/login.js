@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./login.css"
 
 
-export const Login = props => {
+export const Login = () => {
     const email = useRef()
     const password = useRef()
     const invalidDialog = useRef()
@@ -24,8 +24,9 @@ export const Login = props => {
         })
             .then(res => res.json())
             .then(res => {
-                if ("valid" in res && res.valid) {
+                if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "cashtray_token", res.token )
+                    
                     history.push("/")
                 }
                 else {
