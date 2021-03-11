@@ -6,34 +6,36 @@ export const NonsmokerContext = React.createContext()
 export const NonsmokerProvider = (props) => {
   
   const [nonsmokers, setNonsmokers] = useState([])
+  const [singleNonsmoker, setSingleNonsmoker] = useState([])
 
   const getNonsmokers = () => {
     return fetch("http://localhost:8000/nonsmokers", {
       "headers": {
-        "Authorization": `Token ${localStorage.getItem("cashtray_user_id")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       }
     })
       .then(r => r.json())
       .then(setNonsmokers)
+      .then(console.log(nonsmokers))
   }
 
   const getNonsmokerById = (id) => {
     return fetch(`http://localhost:8000/nonsmokers/${id}`, {
       "headers": {
-        "Authorization": `Token ${localStorage.getItem("cashtray_user_id")}`
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       }
     })
       .then(r => r.json())
   }
 
-  const getSingleNonsmoker = (id) => {
-    return fetch(`http://localhost:8000/nonsmokers/${id}`, {
+  const getSingleNonsmoker = () => {
+    return fetch(`http://localhost:8000/nonsmokers/home`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       }
     })
       .then(res => res.json())
-      .then(setNonsmokers)
+      .then(setSingleNonsmoker)
   }
 
   const updateNonsmoker = (nonsmoker) => {
@@ -65,7 +67,7 @@ export const NonsmokerProvider = (props) => {
   return (
     <>
     <NonsmokerContext.Provider value={{
-      nonsmokers, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
+      nonsmokers, singleNonsmoker, setSingleNonsmoker, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
     }}>
       {props.children}
     </NonsmokerContext.Provider>

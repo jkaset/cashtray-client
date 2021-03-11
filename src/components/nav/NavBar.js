@@ -9,7 +9,13 @@ export const NavBar = () => {
     <ul className="navbar">
 
       <li className="navbar__item">
-        <Link className="navbar__link" to="/">Cashtray Home</Link>
+        <Link className="navbar__link" to="/">Home</Link>
+      </li>
+      <li className="navbar__item">
+        <Link className="navbar__link" to="/wallet">Wallet</Link>
+      </li>
+      <li className="navbar__item">
+        <Link className="navbar__link" to="/community">Community</Link>
       </li>
       {
         (localStorage.getItem("cashtray_token") !== null) ?
