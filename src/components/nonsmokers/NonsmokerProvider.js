@@ -36,18 +36,36 @@ export const NonsmokerProvider = (props) => {
     })
       .then(res => res.json())
       .then(setSingleNonsmoker)
+      .then(console.log(singleNonsmoker))
   }
 
-  const updateNonsmoker = (nonsmoker) => {
-    return fetch(`http://localhost:8000/nonsmokers/${nonsmoker.id}`, {
+  const updateNonsmoker = (id) => {
+    return fetch(`http://localhost:8000/nonsmokers/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
       },
-      body: JSON.stringify(nonsmoker)
+      
     })
-      .then(getNonsmokers)
+      .then(setSingleNonsmoker)
+     
+  }
+
+  const refreshNonsmoker = () => {
+    return fetch(`http://localhost:8000/nonsmokers/oops`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
+      },
+      
+    })
+   
+    .then(setSingleNonsmoker)
+    .then(console.log(singleNonsmoker))
+    .then(getSingleNonsmoker)
+
   }
 
   const addNonsmoker = (nonsmoker) => {
@@ -67,7 +85,7 @@ export const NonsmokerProvider = (props) => {
   return (
     <>
     <NonsmokerContext.Provider value={{
-      nonsmokers, singleNonsmoker, setSingleNonsmoker, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker
+      nonsmokers, singleNonsmoker, setSingleNonsmoker, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker, refreshNonsmoker
     }}>
       {props.children}
     </NonsmokerContext.Provider>
