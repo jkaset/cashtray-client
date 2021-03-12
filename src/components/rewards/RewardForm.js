@@ -6,22 +6,20 @@ import {NonsmokerContext} from "../nonsmokers/NonsmokerProvider"
 export const RewardForm=(props)=>{
 	const {rewards, getRewards, addReward, deleteReward} = useContext(RewardContext)
     const {nonsmokers, getNonsmokers, singleNonsmoker, getSingleNonsmoker}=useContext(NonsmokerContext)
-    const [reward, setReward]=useState({})
-    
-  //   useEffect(() => {
-
-  //       getRewards()
+    const [reward, setReward]=useState({
+        user:(localStorage.getItem("cashtray_token")),
+        reward_name:"",
+        reward_cost:"",
         
-	// }, [])
 
-  const handleControlledInputChange = (reward) => {
-       
-    const newReward = Object.assign({}, reward)  
-           
-    newReward[reward.target.reward_name] = reward.target.value  
-    setReward(newReward)                                 
-}
- 
+    })
+    
+
+    const changeRewardState = (domEvent) => {
+        const newRewardState = Object.assign({}, reward)
+        newRewardState[domEvent.target.name] = domEvent.target.value
+        setReward(newRewardState)
+    }
 
 return(
   <>
@@ -30,12 +28,12 @@ return(
 
           <fieldset>
               <label> Name it</label>
-              {reward&&<input type="text" name="reward_name" defaultValue={reward.reward_name}  onChange={handleControlledInputChange}></input>}
+              <input type="text" name="reward_name" defaultValue={reward.reward_name}  onChange={changeRewardState}></input>
           </fieldset>
 
           <fieldset>
               <label> Reward Cost</label>
-              {reward&&<input type="text" name="reward_cost" defaultValue={reward.reward_cost} onChange={handleControlledInputChange}></input>}
+              <input type="text" name="reward_cost" defaultValue={reward.reward_cost} onChange={changeRewardState}></input>
           </fieldset>
           
 
@@ -44,7 +42,7 @@ return(
       <button type="submit"
           onClick={event=>{
               event.preventDefault()
-              addReward()
+              addReward(reward)
           }}> submit
 
       </button>

@@ -27,17 +27,19 @@ export const RewardProvider = (props) => {
       }
     })
       .then(r => r.json())
+      .then(setSingleReward)
+      .then(console.log(singleReward))
   }
 
 
-  const updateReward = (reward) => {
-    return fetch(`http://localhost:8000/nonsmokers/${reward.id}`, {
-      method: "PUT",
+  const redeemReward = (reward) => {
+    return fetch(`http://localhost:8000/rewards/${reward.id}/redeem`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
-      },
-      body: JSON.stringify(reward)
+      }
+    
     })
       .then(getRewards)
   }
@@ -67,7 +69,7 @@ export const RewardProvider = (props) => {
   return (
     <>
     <RewardContext.Provider value={{
-      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, updateReward, addReward
+      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, redeemReward, addReward
     }}>
       {props.children}
     </RewardContext.Provider>
