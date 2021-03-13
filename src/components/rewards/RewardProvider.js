@@ -56,8 +56,8 @@ export const RewardProvider = (props) => {
       .then(getRewards)
   }
 
-  const deleteReward = id => {
-    return fetch(`http://localhost:8000/rewards/${id}`, {
+  const deleteReward = reward => {
+    return fetch(`http://localhost:8000/rewards/${reward.id}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
           },
