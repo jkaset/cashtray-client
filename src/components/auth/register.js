@@ -2,6 +2,7 @@ import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./login.css"
 
+
 export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()

@@ -7,6 +7,7 @@ export const RewardProvider = (props) => {
   
   const [rewards, setRewards] = useState([])
   const [singleReward, setSingleReward] = useState([])
+  const [available, setAvailable] = useState()
   
 
   const getRewards = () => {
@@ -69,7 +70,7 @@ export const RewardProvider = (props) => {
   return (
     <>
     <RewardContext.Provider value={{
-      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, redeemReward, addReward
+      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, redeemReward, addReward, available, setAvailable
     }}>
       {props.children}
     </RewardContext.Provider>
