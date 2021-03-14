@@ -4,13 +4,17 @@ import { RewardContext } from "./RewardProvider"
 
 export const RewardList = () => {
 
-  const { rewards, getRewards, redeemReward, deleteReward } = useContext(RewardContext)
+  const { rewards, getRewards, redeemReward, deleteReward, available, setAvailable } = useContext(RewardContext)
   const { singleNonsmoker, getSingleNonsmoker } = useContext(NonsmokerContext)
+ 
 
   useEffect(() => {
     getSingleNonsmoker()
       .then(getRewards)
+       
   }, [])
+
+
 
 
 
@@ -21,20 +25,40 @@ export const RewardList = () => {
   console.log(singleNonsmoker.time_smoke_free)
   console.log(allTimeTotal)
 
-  // const minusRedeemedValues = () => {
-  //   if (rewards.redeemed === true) {
-  //     return allTimeTotal - rewards.reward_cost
-  //   } 
-  // }
+  //function that removes buttons and greys out redeemed rewards
+  // const redeemedClass = 
+  //   rewards.map((reward) => {
+  //     if (reward.redeemed === true) {
+  //       return allTimeTotal - spentCashTotal
+  //   }
 
-  //adjustCost function
-  // const availableCash = allTimeTotal - reward.reward_cost if redeemed = true
+  //this function "works" but needs to change state
+  let spentCashTotal = 0 
+  const spentCash = 
+    rewards.map((reward) => {
+      if (reward.redeemed === true) {
+        return spentCashTotal += parseInt(reward.reward_cost)
+      }
+    })
+  // console.log(spentCashTotal)
+  const availableCash = 
+    rewards.map((reward) => {
+      if (reward.redeemed === true) {
+        return allTimeTotal - spentCashTotal
+      }
+     
+    }) 
+  
+
 
   return (
     <>
       <p>my rewards</p>
       All-time savings: {allTimeTotal}
-      <p>Available cash: { }</p>
+      <p>Total Spent: {spentCash}</p>
+      <p>Available cash: {availableCash}
+
+      </p>
       <ul>
         {rewards.map((reward) => {
 
@@ -52,7 +76,7 @@ export const RewardList = () => {
               onClick={event => {
                 event.preventDefault()
                 deleteReward(reward)
-                // .then(minusRedeemedValues)
+                
               }}> delete
 
             </button>
