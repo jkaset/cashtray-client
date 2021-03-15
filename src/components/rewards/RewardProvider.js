@@ -43,6 +43,7 @@ export const RewardProvider = (props) => {
     
     })
       .then(getRewards)
+     
   }
 
   const addReward = (reward) => {
