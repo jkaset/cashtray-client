@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
+import { CommentForm } from "./CommentForm"
 
 export const CommentCommunityList = () => {
   const { nonsmokers, getNonsmokers } = useContext(NonsmokerContext)
@@ -18,9 +19,20 @@ export const CommentCommunityList = () => {
     
       <ul>
        {nonsmokers.map((nonsmoker)=>
+       <>
          <li>
-           {nonsmoker.user.first_name} {nonsmoker.user.last_name}: {nonsmoker.time_smoke_free} 
+           <div>{nonsmoker.user.first_name} {nonsmoker.user.last_name}: {nonsmoker.time_smoke_free}</div>
+           
+           
+           <button type="submit"
+            onClick={event => {
+              event.preventDefault()
+              CommentForm()
+            }}> give kudos
+            
+            </button>
          </li>
+      </> 
        )}
       </ul> 
       </>
