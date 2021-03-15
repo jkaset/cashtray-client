@@ -10,14 +10,17 @@ export const RewardList = () => {
   useEffect(() => {
     getSingleNonsmoker()
       .then(getRewards)
+
       
     }, [])
+
+
     
   const [spentCashAmount, setSpentCashAmount] = useState(0)
     
   useEffect(() => {
     
-      let redeemedRewardsArray = []
+      let redeemedRewardsArray = [0]
       const reducer = (accumulator, currentValue) => accumulator + currentValue
       rewards.forEach(r=> {
         if (r.redeemed === true) {
@@ -44,30 +47,6 @@ export const RewardList = () => {
   console.log(singleNonsmoker.time_smoke_free)
   console.log(allTimeTotal)
 
-  //function that removes buttons and greys out redeemed rewards
-  // const redeemedClass = 
-  //   rewards.map((reward) => {
-  //     if (reward.redeemed === true) {
-  //       return allTimeTotal - spentCashTotal
-  //   }
-
-  //this function "works" but needs to change state
-
-  // const spentCash = 
-  //   rewards.map((reward) => {
-  //     if (reward.redeemed === true) {
-  //       const spent = reduce(reward.reward_cost)
-  //       setSpentCashAmount(spent)
-  //     }
-  //   })
-  // console.log(spentCashAmount)
-  // const availableCash = 
-  //   rewards.map((reward) => {
-  //     if (reward.redeemed === true) {
-  //       return allTimeTotal - spentCashTotal
-  //     }
-     
-  //   }) 
   
 
 
