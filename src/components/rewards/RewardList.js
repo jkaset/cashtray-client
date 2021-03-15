@@ -26,7 +26,7 @@ export const RewardList = () => {
   useEffect(() => {
     const newTotal = allTimeTotal - spentCashAmount
     setAvailableCashAmount(newTotal)
-  }, [rewards])
+  }, [spentCashAmount])
 
   useEffect(() => {
     let redeemedRewardsArray = [0]
@@ -38,6 +38,7 @@ export const RewardList = () => {
       // console.log(redeemedRewardsArray)
       const redeemedTotal = redeemedRewardsArray.reduce(reducer)
       setSpentCashAmount(redeemedTotal)
+      
     })
   }, [rewards])
 
@@ -54,29 +55,32 @@ export const RewardList = () => {
       <p>Available cash: {availableCashAmount}</p>
       <p>Total Spent: {spentCashAmount}</p>
       <ul>
-        {rewards.map((reward) => {
+        {
+          rewards.map(reward => {
 
-          return <li key={reward.id} className={isRedeemed ? "app" : "danger"}>
-            {reward.reward_name} : {reward.reward_cost}
-            <button type="submit" className="button_on"
+          return <li key={reward.id} >
+            <div>{reward.reward_name} : {reward.reward_cost}</div>
+
+            {reward.redeemed ? 
+            <div></div> :
+            <>
+            <button type="submit" 
               onClick={event => {
-                event.preventDefault()
-               
+                event.preventDefault() 
                 redeemReward(reward)
-              
-               
-
+                
               }}> redeem
 
             </button>
-            <button type="submit" className="button_on"
+            <button type="submit" 
               onClick={event => {
                 event.preventDefault()
                 deleteReward(reward)
 
               }}> delete
 
-            </button>
+            </button> </> 
+            }
           </li>
 
         })}
