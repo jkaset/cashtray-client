@@ -59,11 +59,14 @@ export const RewardList = () => {
           rewards.map(reward => {
 
           return <li key={reward.id} >
-            <div>{reward.reward_name} : {reward.reward_cost}</div>
-
+            <div>{reward.reward_name} </div>
             {reward.redeemed ? 
-            <div></div> :
+            
+
+            
+            <div>redeemed!</div> :
             <>
+            <div> cost: {reward.reward_cost}</div>
             <button type="submit" 
               onClick={event => {
                 event.preventDefault() 
