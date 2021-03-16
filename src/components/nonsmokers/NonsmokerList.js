@@ -12,30 +12,59 @@ export const NonsmokerList = () => {
   useEffect(() => {
     getSingleNonsmoker()
   }, [])
+  const date = new Date(singleNonsmoker.quit_date)
+  console.log(date)
 
+  const timeClean = singleNonsmoker.time_smoke_free
 
+  const cigsNotSmoked = singleNonsmoker.cigs_per_day * singleNonsmoker.time_smoke_free
 
-  // useEffect(() => {
-  //   refreshNonsmoker()
-  //   .then(getSingleNonsmoker())
-  // }, [])
+  const timeSaved = (cigsNotSmoked * 4)
+
 
   return (
     <>
+      <h1>I QUIT</h1>
+      <h2>Timer</h2>
+      { timeClean < 1 ?
+        <h1>DAY 1! You Got This!</h1> :
+        <h1>{timeClean} DAYS STRONG</h1>
+      }
       <h2>Quit Date</h2>
-      <span>{singleNonsmoker.quit_date}</span>
-      <h2>Days smoke free</h2>
-      <span>{singleNonsmoker.time_smoke_free}</span>
-      
-      
+
+      <div>{date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        timeZone: "America/Chicago",
+      })}</div>
+
+      {timeClean < 1 ? "" :
+        <>
+          <div>Cigs not smoked: {cigsNotSmoked}</div>
+
+
+          {timeSaved > 59 ?
+            <div>Average time saved not smoking: {Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+
+          }
+
+          <div>Full days smoke free: {singleNonsmoker.time_smoke_free}</div>
+        </>
+      }
+
+
+
+
       <div>
         <button type="submit"
           onClick={event => {
             event.preventDefault()
             refreshNonsmoker()
-          }}> oops 
+          }}> oops
         </button>
       </div>
+
     </>
   )
 }

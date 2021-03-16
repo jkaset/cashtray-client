@@ -16,8 +16,8 @@ export const ApplicationViews = (props) => {
     <CommentProvider>
       <RewardProvider>
         <NonsmokerProvider>
-          <Route exact path="/wallet" render={props => <RewardForm {...props} />} />
           <Route exact path="/wallet" render={props => <RewardList {...props} />} />
+          <Route exact path="/wallet/create" render={props => <RewardForm {...props} />} />
           <Route exact path="/" render={props => <NonsmokerList {...props} />} />
           <Route exact path="/community" render={props => <CommentCommunityList {...props} />} />
           <Route path="/comments/:nonsmokerId(\d+)/addcomment" render={(props) => <CommentForm {...props} />} />

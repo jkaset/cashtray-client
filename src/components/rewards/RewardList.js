@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import { RewardContext } from "./RewardProvider"
 import "./Reward.css"
+import { Link } from "react-router-dom"
 
-export const RewardList = () => {
+export const RewardList = (props) => {
 
   const { rewards, getRewards, redeemReward, deleteReward } = useContext(RewardContext)
   const { singleNonsmoker, getSingleNonsmoker } = useContext(NonsmokerContext)
@@ -38,7 +39,7 @@ export const RewardList = () => {
       // console.log(redeemedRewardsArray)
       const redeemedTotal = redeemedRewardsArray.reduce(reducer)
       setSpentCashAmount(redeemedTotal)
-      
+
     })
   }, [rewards])
 
@@ -48,43 +49,58 @@ export const RewardList = () => {
   const allTimeTotal = (singleNonsmoker.time_smoke_free) * daily_cost
 
 
+
+
+
   return (
     <>
-      <p>My Rewards</p>
+      <h1>Wallet</h1>
       All-time savings: {allTimeTotal}
       <p>Available cash: {availableCashAmount}</p>
       <p>Total Spent: {spentCashAmount}</p>
+      <h3>My Rewards List</h3>
       <ul>
         {
           rewards.map(reward => {
 
-          return <li key={reward.id} >
-            <div>{reward.reward_name} : {reward.reward_cost}</div>
+            return <li key={reward.id} >
+              <div>{reward.reward_name} : {reward.reward_cost}</div>
 
-            {reward.redeemed ? 
-            <div></div> :
-            <>
-            <button type="submit" 
-              onClick={event => {
-                event.preventDefault() 
-                redeemReward(reward)
-                
-              }}> redeem
+              {reward.redeemed ?
+                <div></div> :
+                <>
+                  <button type="submit"
+                    onClick={event => {
+                      event.preventDefault()
+                      if (availableCashAmount - reward.reward_cost > 0) {
+                        redeemReward(reward)
+                      } else {
+                        //alert user not enough cash
+                        alert("Not enough available Cash!")
+                      }
+                    }}> redeem
 
             </button>
-            <button type="submit" 
-              onClick={event => {
-                event.preventDefault()
-                deleteReward(reward)
+                  <button type="submit"
+                    onClick={event => {
+                      event.preventDefault()
 
-              }}> delete
+                      deleteReward(reward)
 
-            </button> </> 
-            }
-          </li>
+                    }}> delete
 
-        })}
+            </button> </>
+              }
+            </li>
+
+          })}
       </ul>
+
+
+      <button onClick={() => {
+        props.history.push("/wallet/create")
+      }}>Create Reward
+      </button>
 
     </>
   )
