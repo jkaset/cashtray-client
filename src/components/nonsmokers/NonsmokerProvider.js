@@ -6,6 +6,7 @@ export const NonsmokerContext = React.createContext()
 export const NonsmokerProvider = (props) => {
   
   const [nonsmokers, setNonsmokers] = useState([])
+  const [nonsmoker, setNonsmoker] = useState({ nonsmoker:{user:{}} })
   const [singleNonsmoker, setSingleNonsmoker] = useState([])
 
   const getNonsmokers = () => {
@@ -26,6 +27,7 @@ export const NonsmokerProvider = (props) => {
       }
     })
       .then(r => r.json())
+      .then(setNonsmoker)
   }
 
   const getSingleNonsmoker = () => {
@@ -85,7 +87,7 @@ export const NonsmokerProvider = (props) => {
   return (
     <>
     <NonsmokerContext.Provider value={{
-      nonsmokers, singleNonsmoker, setSingleNonsmoker, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker, refreshNonsmoker
+      nonsmokers, singleNonsmoker, setSingleNonsmoker, setNonsmokers, getNonsmokers, getNonsmokerById, getSingleNonsmoker, updateNonsmoker, addNonsmoker, refreshNonsmoker, nonsmoker, setNonsmoker
     }}>
       {props.children}
     </NonsmokerContext.Provider>
