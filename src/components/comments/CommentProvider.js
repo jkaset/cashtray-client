@@ -6,6 +6,7 @@ export const CommentContext = React.createContext()
 export const CommentProvider = (props) => {
     const [comments, setComments] = useState([])
     const [singleComment, setSingleComment] = useState([])
+    const [relatedComments, setRelatedComments] = useState([])
 
     const getComments = () => {
         return fetch("http://localhost:8000/comments", {
@@ -17,7 +18,7 @@ export const CommentProvider = (props) => {
         .then(setComments)
     }
 
-    const getCommentById = id => {
+    const getSingleComment = id => {
         return fetch(`http://localhost:8000/comments/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
@@ -49,6 +50,16 @@ export const CommentProvider = (props) => {
         .then(getComments)
     }
 
+    const getCommentsByNonsmokerId = (nonsmoker_id) => {
+        return fetch(`http://localhost:8000/comments?id=${nonsmoker_id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(setRelatedComments)
+    }
+
     const updateComment = newComment => {
         console.log(newComment)
         return fetch(`http://localhost:8000/comments/${newComment.id}`, {
@@ -63,7 +74,7 @@ export const CommentProvider = (props) => {
     }
 
     return (
-        <CommentContext.Provider value={{comments, setComments, getComments, addComment, getCommentById, updateComment, deleteComment, singleComment}}>
+        <CommentContext.Provider value={{comments, setComments, getComments, addComment, getSingleComment, updateComment, deleteComment, singleComment, relatedComments, setRelatedComments, getCommentsByNonsmokerId}}>
             {props.children}
         </CommentContext.Provider>
     )
