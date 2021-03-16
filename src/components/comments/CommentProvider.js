@@ -50,8 +50,8 @@ export const CommentProvider = (props) => {
         .then(getComments)
     }
 
-    const getCommentsByNonsmokerId = (nonsmoker_id) => {
-        return fetch(`http://localhost:8000/comments?id=${nonsmoker_id}`, {
+    const getCommentsByNonsmokerId = (nonsmokerId) => {
+        return fetch(`http://localhost:8000/comments?recipient_id=${nonsmokerId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
             }
