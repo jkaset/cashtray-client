@@ -5,7 +5,7 @@ import { CommentContext } from "./CommentProvider"
 
 export const CommentForm = (props) => {
     const { addComment, updateComment, comments, getComments } = useContext(CommentContext)
-    const { getSingleNonmoker, nonsmoker } = useContext(NonsmokerContext)
+    const { getNonsmokerById, nonsmoker } = useContext(NonsmokerContext)
 
     const [ comment, setComment ] = useState({})
 
@@ -48,7 +48,7 @@ export const CommentForm = (props) => {
                 comment: comment.comment,
                 created_on: comment.created_on   
             })
-            .then(() => props.history.push(`/nonmokers/${recipient_id}`))
+            .then(() => props.history.push(`/nonsmokers/${recipient_id}`))
         } else {
             addComment({
                 recipient_id,
