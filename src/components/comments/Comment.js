@@ -21,9 +21,9 @@ export const Comment = ({ comment, props }) => {
     if (localStorage.getItem("cashtray_token")) {
         return (
             <div className="comment">
-                <div>Comment content: {comment.comment}</div>
-                <div>Author: {comment.commenter.user.first_name}</div>
-                <div>Date Created on: {date.toLocaleString("en-US", {
+                <div>"{comment.comment}" -{comment.commenter.user.first_name}</div>
+              
+                <div>Date: {date.toLocaleString("en-US", {
                     year: "numeric",
                     month: "numeric",
                     day: "numeric",
