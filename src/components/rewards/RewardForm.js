@@ -4,14 +4,12 @@ import {RewardContext} from "./RewardProvider"
 import {NonsmokerContext} from "../nonsmokers/NonsmokerProvider"
 
 export const RewardForm=(props)=>{
-	const {rewards, getRewards, addReward, deleteReward} = useContext(RewardContext)
-    const {nonsmokers, getNonsmokers, singleNonsmoker, getSingleNonsmoker}=useContext(NonsmokerContext)
+	const {addReward} = useContext(RewardContext)
+
     const [reward, setReward]=useState({
         user:(localStorage.getItem("cashtray_token")),
         reward_name:"",
         reward_cost:"",
-        
-
     })
     
 
@@ -23,7 +21,7 @@ export const RewardForm=(props)=>{
 
 return(
   <>
-      <p>Add Cashtray Reward</p>
+      <h3>Create Reward</h3>
       <form className="rewardForm">
 
           <fieldset>
@@ -43,6 +41,7 @@ return(
           onClick={event=>{
               event.preventDefault()
               addReward(reward)
+              .then(props.history.push("/wallet"))
           }}> submit
 
       </button>

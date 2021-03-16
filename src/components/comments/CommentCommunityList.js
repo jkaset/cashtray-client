@@ -29,15 +29,8 @@ export const CommentCommunityList = ({ nonsmoker }) => {
                 pathname: `/nonsmokers/${nonsmoker.id}`,
                 state: { chosenNonsmoker: nonsmoker }
               }}> {nonsmoker.user.first_name} {nonsmoker.user.last_name}: {nonsmoker.time_smoke_free}</Link>
+              
 
-
-              {/* <button type="submit"
-            onClick={event => {
-              event.preventDefault()
-              CommentForm()
-            }}> give kudos
-            
-            </button> */}
             </li>
           </>
         )}

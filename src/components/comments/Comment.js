@@ -8,7 +8,9 @@ export const Comment = ({ comment, props }) => {
 
     const { deleteComment } = useContext(CommentContext)
     const recipientId = parseInt(comment.recipient.id)
-    console.log(recipientId)
+    // console.log(recipientId)
+    const thatsMine = comment.my_comment
+    console.log(thatsMine)
     const date = new Date(comment.created_on)
     const confirmDeleteComment = () => {
         const prompt = window.confirm("Are you sure you want to delete this comment?")
@@ -17,8 +19,7 @@ export const Comment = ({ comment, props }) => {
                 .then(() => { props.history.push(`/nonsmokers/${recipientId}`) })
         }
     }
-    console.log(comment)
-    if (localStorage.getItem("cashtray_token")) {
+   
         return (
             <div className="comment">
                 <div>"{comment.comment}" -{comment.commenter.user.first_name}</div>
@@ -29,12 +30,23 @@ export const Comment = ({ comment, props }) => {
                     day: "numeric",
                     timeZone: "America/Chicago",
                 })}</div>
+
+
+               
+                {comment.my_comment ? <>
                 <button className="miscbutton" onClick={() => {
                     confirmDeleteComment()
                 }}>
                     Delete
-                </button>
-                <button className="miscbutton" onClick={() => {
+                </button>  </>
+                : ""}
+
+            </div>
+        )
+
+}
+
+                {/* <button className="miscbutton" onClick={() => {
                     props.history.push({
                         pathname: `/comments/edit/${comment.id}`,
                         commentId: comment.id,
@@ -42,24 +54,6 @@ export const Comment = ({ comment, props }) => {
                     })
                 }}>
                     Edit
-                </button>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                No comments
-            </div>
-        )
-    }
-}
+                </button> */}
 
 
-    // return (
-    //     <>
-    //         <div>
-    //             <p>{comment.comment}</p>
-    //             <p>From: {comment.commenter.user.first_name} {comment.commenter.user.last_name}</p>
-    //             <p>{comment.created_on}</p>
-    //         </div>
-    //         )
