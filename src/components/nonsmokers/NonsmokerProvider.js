@@ -6,7 +6,7 @@ export const NonsmokerContext = React.createContext()
 export const NonsmokerProvider = (props) => {
   
   const [nonsmokers, setNonsmokers] = useState([])
-  const [nonsmoker, setNonsmoker] = useState({ nonsmoker:{user:{}} })
+  const [nonsmoker, setNonsmoker] = useState({ user:{}} )
   const [singleNonsmoker, setSingleNonsmoker] = useState([])
 
   const getNonsmokers = () => {
