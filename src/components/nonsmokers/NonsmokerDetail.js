@@ -6,62 +6,49 @@ import { Link } from "react-router-dom"
 
 
 export const NonsmokerDetail = (props) => {
-    const { getSingleNonsmoker, nonsmoker, setSingleNonsmoker, singleNonsmoker } = useContext(NonsmokerContext)
-    const { comments, relatedComments, getCommentsByPostId } = useContext(CommentContext)
+  const { getSingleNonsmoker, nonsmoker, setSingleNonsmoker, singleNonsmoker } = useContext(NonsmokerContext)
+  const { comments, relatedComments, getCommentsByNonsmokerId } = useContext(CommentContext)
 
 
-    const postId = parseInt(props.match.params.postId)
+  const nonsmokerId = parseInt(props.match.params.nonsmoker_id)
 
-    useEffect(() => {
+  useEffect(() => {
 
-        getCommentsByPostId(postId)
+    getCommentsByNonsmokerId(nonsmokerId)
 
-        getSinglePost(postId)
+    getSingleNonsmoker(nonsmokerId)
 
-            .then(setPost(post))
-    }, [])
-
-
-    const confirmDelete = () => {
-        const d = window.confirm("Would you like to delete this?")
-        if (d === true) {
-            deletePost(postId).then(() => { props.history.push("/posts") })
-        }
-    }
+      .then(setSingleNonsmoker(nonsmoker))
+  }, [])
 
 
-    useEffect(() => {
-        const postId = parseInt(props.match.params.postId)
-        getCommentsByPostId(postId)
-    }, [comments])
+  useEffect(() => {
+    const nonsmokerId = parseInt(props.match.params.nonsmoker_id)
+    getCommentsByNonsmokerId(nonsmokerId)
+  }, [comments])
 
-    // console.log("post", post)
-    return (
-        <>
-            <h2>{post.title}</h2>
-            <div>{post.image_url}</div>
-            <div>{post.content}</div>
-            <div>{post.publication_date}</div>
-            <div>{post.rare_user.user.first_name}</div>
-            <div>{post.category.label}</div>
-            { parseInt(localStorage.getItem("rare_token")) === post.user_id ? <>
-                <button onClick={() => { confirmDelete() }}>Delete Post</button>
-                <button onClick={() => { props.history.push(`/posts/edit/${post.id}`) }}>
-                    Edit Post</button> </> : <> {""}</>
-            }
-            <h3>Comments</h3>
-            {
-                relatedComments.map(commentObj => <Comment key={commentObj.id} comment={commentObj} props={props} />)
-            }
-            <button onClick={() => {
-                props.history.push(`/posts/${post.id}/addcomment`)
-            }}>Add a Comment
+
+  return (
+    <>
+      <div>{nonsmoker.user.first_name} {nonsmoker.user.last_name}: {nonsmoker.time_smoke_free}</div>
+      
+      
+      <h3>Comments</h3>
+      {
+        relatedComments.map(commentObj => <Comment key={commentObj.id} comment={commentObj} props={props} />)
+      }
+      <button onClick={() => {
+        props.history.push(`/comments/${nonsmoker.id}/addcomment`)
+      }}>Add a Comment
             </button>
-            {/* If you want a link instead */}
-            {/* <Link to={{
-                pathname: `/posts/${post.id}/addcomment`,
-                state: { chosenPost: post }
-            }}>Add a Comment</Link> */}
-        </>
-    )
+   
+    </>
+  )
 }
+
+
+// { parseInt(localStorage.getItem("cashtray_token")) === cashtray.commenter.user_id ? <>
+//         <button onClick={() => { confirmDelete() }}>Delete My Comment</button>
+//         <button onClick={() => { props.history.push(`/comments/edit/${comment.id}`) }}>
+//           Edit My Comment</button> </> : <> {""}</>
+//       }

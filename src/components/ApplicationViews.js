@@ -8,6 +8,7 @@ import { RewardForm } from "./rewards/RewardForm.js";
 import { RewardList } from "./rewards/RewardList.js";
 import { CommentProvider } from "./comments/CommentProvider.js"
 import { CommentForm } from "./comments/CommentForm.js"
+import { NonsmokerDetail } from "./nonsmokers/NonsmokerDetail.js"
 export const ApplicationViews = (props) => {
   return <>
 
@@ -21,6 +22,8 @@ export const ApplicationViews = (props) => {
           <Route exact path="/community" render={props => <CommentCommunityList {...props} />} />
           <Route path="/community/:nonsmokerId(\d+)/addcomment" render={(props) => <CommentForm {...props} />} />
           <Route path="/comments/edit/:commentId(\d+)" render={(props) => <CommentForm {...props} />} />
+          <Route path="/community/:nonsmokerId(\d+)" render={(props) => <NonsmokerDetail {...props} />}
+                    />
         </NonsmokerProvider>
       </RewardProvider>
     </CommentProvider>

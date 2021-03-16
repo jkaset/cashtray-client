@@ -26,6 +26,8 @@ export const NonsmokerList = () => {
       <span>{singleNonsmoker.quit_date}</span>
       <h2>Days smoke free</h2>
       <span>{singleNonsmoker.time_smoke_free}</span>
+      
+      
       <div>
         <button type="submit"
           onClick={event => {
