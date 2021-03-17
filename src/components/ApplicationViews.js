@@ -22,8 +22,7 @@ export const ApplicationViews = (props) => {
           <Route exact path="/community" render={props => <CommentCommunityList {...props} />} />
           <Route path="/comments/:nonsmokerId(\d+)/addcomment" render={(props) => <CommentForm {...props} />} />
           <Route path="/comments/edit/:commentId(\d+)" render={(props) => <CommentForm {...props} />} />
-          <Route path="/nonsmokers/:nonsmokerId(\d+)" render={(props) => <NonsmokerDetail {...props} />}
-                    />
+          <Route path="/nonsmokers/:nonsmokerId(\d+)" render={(props) => <NonsmokerDetail {...props} />} />
         </NonsmokerProvider>
       </RewardProvider>
     </CommentProvider>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import { RewardContext } from "./RewardProvider"
 import "./Reward.css"
-import { Link } from "react-router-dom"
+
 
 export const RewardList = (props) => {
 
@@ -10,12 +10,6 @@ export const RewardList = (props) => {
   const { singleNonsmoker, getSingleNonsmoker } = useContext(NonsmokerContext)
   const [spentCashAmount, setSpentCashAmount] = useState(0)
   const [availableCashAmount, setAvailableCashAmount] = useState()
-
-  const [isRedeemed, setRedeemed] = useState("false")
-
-  const handleToggle = () => {
-    setRedeemed(!isRedeemed)
-  }
 
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 
 import React, { useContext, useState, useEffect } from "react"
 import {RewardContext} from "./RewardProvider"
-import {NonsmokerContext} from "../nonsmokers/NonsmokerProvider"
 
 export const RewardForm=(props)=>{
 	const {addReward} = useContext(RewardContext)
