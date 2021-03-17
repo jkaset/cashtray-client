@@ -6,7 +6,7 @@ import "./Reward.css"
 
 export const RewardList = (props) => {
 
-  const { rewards, getRewards, redeemReward, deleteReward } = useContext(RewardContext)
+  const { rewards, getRewards, redeemReward, unredeemReward, deleteReward } = useContext(RewardContext)
   const { singleNonsmoker, getSingleNonsmoker } = useContext(NonsmokerContext)
   const [spentCashAmount, setSpentCashAmount] = useState(0)
   const [availableCashAmount, setAvailableCashAmount] = useState()
@@ -49,6 +49,7 @@ export const RewardList = (props) => {
   return (
     <>
       <h1>Wallet</h1>
+      
       All-time savings: {allTimeTotal}
       <p>Available cash: {availableCashAmount}</p>
       <p>Total Spent: {spentCashAmount}</p>

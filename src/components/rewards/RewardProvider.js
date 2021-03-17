@@ -46,6 +46,19 @@ export const RewardProvider = (props) => {
      
   }
 
+  const unredeemReward = (reward) => {
+    return fetch(`http://localhost:8000/rewards/${reward.id}/unredeem`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("cashtray_token")}`
+      }
+    
+    })
+      .then(getRewards)
+     
+  }
+
   const addReward = (reward) => {
     return fetch("http://localhost:8000/rewards", {
       method: "POST",
@@ -71,7 +84,7 @@ export const RewardProvider = (props) => {
   return (
     <>
     <RewardContext.Provider value={{
-      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, redeemReward, addReward
+      rewards, setRewards, singleReward, setSingleReward, deleteReward, getRewards, getRewardById, redeemReward, unredeemReward, addReward
     }}>
       {props.children}
     </RewardContext.Provider>

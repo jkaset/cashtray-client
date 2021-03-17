@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { RewardContext } from "../rewards/RewardProvider"
 
 export const NonsmokerContext = React.createContext()
 
@@ -8,6 +9,8 @@ export const NonsmokerProvider = (props) => {
   const [nonsmokers, setNonsmokers] = useState([])
   const [nonsmoker, setNonsmoker] = useState({ user:{}} )
   const [singleNonsmoker, setSingleNonsmoker] = useState([])
+
+  const { rewards, unredeemReward } = useContext(RewardContext)
 
   const getNonsmokers = () => {
     return fetch("http://localhost:8000/nonsmokers", {
@@ -67,6 +70,8 @@ export const NonsmokerProvider = (props) => {
     .then(setSingleNonsmoker)
     .then(console.log(singleNonsmoker))
     .then(getSingleNonsmoker)
+    .then(unredeemReward(rewards))
+   
 
   }
 
