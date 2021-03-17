@@ -31,7 +31,7 @@ export const RewardList = (props) => {
       if (r.redeemed === true) {
         redeemedRewardsArray.push(r.reward_cost)
       }
-      // console.log(redeemedRewardsArray)
+  
       const redeemedTotal = (redeemedRewardsArray.reduce(reducer)).toFixed(2)
       setSpentCashAmount(redeemedTotal)
 
