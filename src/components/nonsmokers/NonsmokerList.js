@@ -45,7 +45,8 @@ export const NonsmokerList = (props) => {
         {timeClean < 1 ?
 
           <div class="jumbotron">
-            <h1 class="display-3">DAY 1! You Got This!</h1>
+            <h1 class="display-3">DAY 1 </h1>
+            <h2 class="display-4">You Got This!</h2>
             <p class="lead">“Eight hours after putting out a cigarette, you are 97% nicotine-free. After just three days of not smoking, you are 100% nicotine-free.”</p>
 
             <p className="float-right">― Allen Carr, The Easyway to Stop Smoking</p>

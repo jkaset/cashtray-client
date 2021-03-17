@@ -3,6 +3,8 @@ import { CommentContext } from "./CommentProvider"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import './Comment.css'
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 export const Comment = ({ comment, props }) => {
 
@@ -19,34 +21,38 @@ export const Comment = ({ comment, props }) => {
                 .then(() => { props.history.push(`/nonsmokers/${recipientId}`) })
         }
     }
-   
-        return (
-            <div className="comment">
-                <div>"{comment.comment}" -{comment.commenter.user.first_name}</div>
-              
-                <div>Date: {date.toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "numeric",
-                    day: "numeric",
-                    timeZone: "America/Chicago",
-                })}</div>
+
+    return (
+        <>
+            <Container>
+                <div className="comment">
+                    <div>"{comment.comment}" -{comment.commenter.user.first_name}</div>
+
+                    <div>{date.toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        timeZone: "America/Chicago",
+                    })}</div>
 
 
-               
-                {comment.my_comment ? <>
-                <button className="miscbutton" onClick={() => {
-                    confirmDeleteComment()
-                }}>
-                    Delete
-                </button>  </>
-                : ""}
 
-            </div>
-        )
+                    {comment.my_comment ? <>
+                        <Button className="miscbutton" onClick={() => {
+                            confirmDeleteComment()
+                        }}>
+                            Delete
+                </Button>  </>
+                        : ""}
+
+                </div>
+            </Container>
+        </>
+    )
 
 }
 
-                {/* <button className="miscbutton" onClick={() => {
+{/* <button className="miscbutton" onClick={() => {
                     props.history.push({
                         pathname: `/comments/edit/${comment.id}`,
                         commentId: comment.id,
