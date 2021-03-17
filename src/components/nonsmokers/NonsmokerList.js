@@ -4,13 +4,15 @@
 //Oops button
 import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "./NonsmokerProvider"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 
-export const NonsmokerList = () => {
+export const NonsmokerList = (props) => {
   const { singleNonsmoker, getSingleNonsmoker, updateNonsmoker, refreshNonsmoker } = useContext(NonsmokerContext)
 
 
-  
+
 
   useEffect(() => {
     getSingleNonsmoker()
@@ -22,53 +24,99 @@ export const NonsmokerList = () => {
 
   const cigsNotSmoked = singleNonsmoker.cigs_per_day * singleNonsmoker.time_smoke_free
 
+  // const userName = singleNonsmoker.user.first_name
+
   const timeSaved = (cigsNotSmoked * 4)
   const timeSavedRadio = (cigsNotSmoked * 6)
+
+  const confirmOops = () => {
+    const prompt = window.confirm("Fall off the wagon?")
+    if (prompt === true) {
+      refreshNonsmoker()
+        .then(() => { props.history.push("/") })
+    }
+  }
 
 
   return (
     <>
-      <h1>I QUIT</h1>
-      
-      { timeClean < 1 ?
-        <h1>Timer: DAY 1! You Got This!</h1> :
-        <h1>Timer: {timeClean} DAYS STRONG</h1>
-      }
-      <h2>Quit Date:  
+      <Container>
 
-      {date.toLocaleString("en-US", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        timeZone: "America/Chicago",
-      })}
-      </h2>
+        {timeClean < 1 ?
 
-      {timeClean < 1 ? "" :
-        <>
-          <div>Cigs not smoked: {cigsNotSmoked}</div>
+          <div class="jumbotron">
+            <h1 class="display-3">DAY 1! You Got This!</h1>
+            <p class="lead">“Eight hours after putting out a cigarette, you are 97% nicotine-free. After just three days of not smoking, you are 100% nicotine-free.”</p>
 
+            <p className="float-right">― Allen Carr, The Easyway to Stop Smoking</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="/community" role="button">Join the Nonsmoker Community</a>
+            </p>
+          </div>
+          :
 
-          {timeSaved > 59 ?
-            <div>Average time saved not smoking: {Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+          <div class="jumbotron">
+            <h1 class="display-3">{timeClean} DAYS STRONG</h1>
 
-          }
+            <p class="lead">“Once you understand you’re not making a sacrifice, you’re well on your way to freedom.”</p>
 
-          <div>Full days smoke free: {singleNonsmoker.time_smoke_free}</div>
-        </>
-      }
+            <p className="float-right">― Allen Carr, Quit Smoking Without Willpower</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="/wallet" role="button">Cashtray Wallet</a>
+            </p>
+          </div>
+        }
 
 
+        <div class="card border-secondary mb-3">
+          <div class="card-header">Nonsmoker Since</div>
+          <div class="card-body">
+            <h4 class="card-title">{date.toLocaleString("en-US", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+              timeZone: "America/Chicago",
+            })}</h4>
+            <p class="card-text"></p>
+          </div>
+        </div>
+        {timeClean < 1 ? "" :
+          <>
+            <div class="card border-success mb-3" >
+              <div class="card-header">Time Saved</div>
+              <div class="card-body">
+                <h4 class="card-title">{timeSaved > 59 ?
+                  <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+                }</h4>
+                <p class="card-text">freed up by not smoking</p>
+              </div>
+            </div>
+            <div class="card border-danger mb-3" >
+              <div class="card-header">Cigarettes gone unsmoked</div>
+              <div class="card-body">
+                <h4 class="card-title">{cigsNotSmoked}</h4>
+                <p class="card-text">"no thank you's"</p>
+              </div>
+            </div>
+          </>
+        }
 
-      <div>
-        <button type="submit"
-          onClick={event => {
-            event.preventDefault()
-            refreshNonsmoker()
-          }}> oops
-        </button>
-      </div>
 
+
+        {/* <div>
+          <Button variant="danger" type="submit"
+            onClick={event => {
+              event.preventDefault()
+              refreshNonsmoker()
+            }}> oops
+        </Button>
+        </div> */}
+        <Button variant="danger" className="miscbutton" onClick={() => {
+          confirmOops()
+        }}>
+          i fucked up </Button>
+
+      </Container>
     </>
   )
 }
