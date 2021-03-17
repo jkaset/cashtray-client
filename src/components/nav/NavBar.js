@@ -1,13 +1,30 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
+
 
 export const NavBar = () => {
   const history = useHistory()
 
   return (
-    <ul className="navbar">
+    <>
+    <Nav>
+    <Nav.Item>
+    <Nav.Link href="/">Home</Nav.Link>
+    </Nav.Item>
 
+    <Nav.Item>
+    <Nav.Link href="/wallet">Wallet</Nav.Link>
+    </Nav.Item>
+
+    <Nav.Item>
+    <Nav.Link href="/community">Community</Nav.Link>
+    </Nav.Item>
+
+
+{/* 
       <li className="navbar__item">
         <Link className="navbar__link" to="/">Home</Link>
       </li>
@@ -16,7 +33,8 @@ export const NavBar = () => {
       </li>
       <li className="navbar__item">
         <Link className="navbar__link" to="/community">Community</Link>
-      </li>
+      </li> */}
+    <Button>
       {
         (localStorage.getItem("cashtray_token") !== null) ?
           <li className="nav-item">
@@ -36,6 +54,9 @@ export const NavBar = () => {
             </li>
           </>
       }
-    </ul>
+    </Button>
+    {/* </ul> */}
+    </Nav>
+      </>
   )
 }

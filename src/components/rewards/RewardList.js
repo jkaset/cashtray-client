@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import { RewardContext } from "./RewardProvider"
 import "./Reward.css"
+import Button from 'react-bootstrap/Button';
 
 
 export const RewardList = (props) => {
@@ -20,7 +21,7 @@ export const RewardList = (props) => {
 
   useEffect(() => {
     const newTotal = allTimeTotal - spentCashAmount
-    setAvailableCashAmount(newTotal)
+    setAvailableCashAmount((newTotal).toFixed(2))
   }, [spentCashAmount])
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export const RewardList = (props) => {
         redeemedRewardsArray.push(r.reward_cost)
       }
       // console.log(redeemedRewardsArray)
-      const redeemedTotal = redeemedRewardsArray.reduce(reducer)
+      const redeemedTotal = (redeemedRewardsArray.reduce(reducer)).toFixed(2)
       setSpentCashAmount(redeemedTotal)
 
     })
@@ -40,7 +41,7 @@ export const RewardList = (props) => {
 
   const daily_cost = ((singleNonsmoker.cigs_per_day) / (singleNonsmoker.cigs_per_pack)) * (singleNonsmoker.price_per_pack)
 
-  const allTimeTotal = (singleNonsmoker.time_smoke_free) * daily_cost
+  const allTimeTotal = ((singleNonsmoker.time_smoke_free) * daily_cost).toFixed(2)
 
 
 
@@ -91,10 +92,10 @@ export const RewardList = (props) => {
       </ul>
 
 
-      <button onClick={() => {
+      <Button variant="danger" onClick={() => {
         props.history.push("/wallet/create")
       }}>Create Reward
-      </button>
+      </Button>
 
     </>
   )

@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { BrowserRouter as Router } from "react-router-dom"
 import { Cashtray } from "./components/App.js"
 import reportWebVitals from './reportWebVitals';
+import './bootstrap.min.css'
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -9,6 +9,9 @@ import { NonsmokerContext } from "./NonsmokerProvider"
 export const NonsmokerList = () => {
   const { singleNonsmoker, getSingleNonsmoker, updateNonsmoker, refreshNonsmoker } = useContext(NonsmokerContext)
 
+
+  
+
   useEffect(() => {
     getSingleNonsmoker()
   }, [])
@@ -20,6 +23,7 @@ export const NonsmokerList = () => {
   const cigsNotSmoked = singleNonsmoker.cigs_per_day * singleNonsmoker.time_smoke_free
 
   const timeSaved = (cigsNotSmoked * 4)
+  const timeSavedRadio = (cigsNotSmoked * 6)
 
 
   return (
@@ -53,7 +57,6 @@ export const NonsmokerList = () => {
           <div>Full days smoke free: {singleNonsmoker.time_smoke_free}</div>
         </>
       }
-
 
 
 
