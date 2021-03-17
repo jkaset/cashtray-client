@@ -1,5 +1,7 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import "./login.css"
 
 
@@ -59,11 +61,12 @@ export const Register = (props) => {
 
     return (
         <>
+        <Container>
             <main style={{ textAlign: "center" }}>
 
                 <dialog className="dialog dialog--password" ref={passwordDialog}>
                     <div>Passwords do not match</div>
-                    <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
+                    <Button className="button--close" onClick={e => passwordDialog.current.close()}>Close</Button>
                 </dialog>
 
                 <form className="form--login" onSubmit={handleRegister}>
@@ -114,19 +117,20 @@ export const Register = (props) => {
 
                     <fieldset>
                         <label>Cost of one pack:</label>
-                        <input ref={price_per_pack} type="text" pattern="[0-9]*" name="price_per_pack" required autoFocus />
+                        <input ref={price_per_pack} type="text" pattern="[0-9]*" name="price_per_pack" required autoFocus
+                        className="form-control" />
                     </fieldset>
 
                     <fieldset>
                         <label>When did you start smoking?</label>
                         <input ref={start_smoking_year} type="date" name="start_smoking_year" required autoFocus
-                        />
+                        className="form-control" />
                     </fieldset>
 
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                        <Button className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
                     </fieldset>
 
 
@@ -135,6 +139,7 @@ export const Register = (props) => {
                     Already registered? <Link to="/login">Login</Link>
                 </section>
             </main>
+            </Container>
         </>
     )
 }
