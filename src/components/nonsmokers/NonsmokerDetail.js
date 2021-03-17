@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "./NonsmokerProvider"
 import { CommentContext } from "../comments/CommentProvider"
 import { Comment } from "../comments/Comment"
-
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 
 export const NonsmokerDetail = (props) => {
@@ -26,19 +27,32 @@ export const NonsmokerDetail = (props) => {
 
   return (
     <>
+      <Container>
+        <div class="card text-white bg-primary mb-3" >
 
-      <p>Shout out to {nonsmoker.user.first_name} {nonsmoker.user.last_name}</p>
-      <p>{nonsmoker.time_smoke_free} days without a cigarette!</p>
-      <button onClick={() => {
-        props.history.push(`/comments/${nonsmoker.id}/addcomment`)
-      }}>Give Kudos!
-      </button>
-      <h3>Comments</h3>
-      {
-        relatedComments.map(commentObj => <Comment key={commentObj.id} comment={commentObj} props={props} />)
-      }
+          <div class="card-body">
+            <h4 class="card-title">Shout out to {nonsmoker.user.first_name} {nonsmoker.user.last_name}!</h4>
+
+            {nonsmoker.time_smoke_free > 1 ?
+              <p class="card-text">{nonsmoker.time_smoke_free} days without a cigarette </p> :
+              <p class="card-text">Just gettin started!</p>}
+            <Button  variant="secondary" onClick={() => {
+              props.history.push(`/comments/${nonsmoker.id}/addcomment`)
+            }}>Give Kudos!
+      </Button>
+          </div>
+        </div>
 
 
+
+        <div>
+
+          {
+            relatedComments.map(commentObj => <Comment key={commentObj.id} comment={commentObj} props={props} />)
+          }
+
+        </div>
+      </Container>
     </>
   )
 }

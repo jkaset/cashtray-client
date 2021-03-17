@@ -13,7 +13,7 @@ export const NavBar = () => {
     <>
       <Container>
         <Nav>
-          <Nav.Item>
+          {/* <Nav.Item>
             <Nav.Link href="/">Home</Nav.Link>
           </Nav.Item>
 
@@ -23,24 +23,29 @@ export const NavBar = () => {
 
           <Nav.Item>
             <Nav.Link href="/community">Community</Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
 
 
-          {/* 
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/">Home</Link>
-      </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/wallet">Wallet</Link>
-      </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/community">Community</Link>
-      </li> */}
+          <Button variant="outline-primary" className="nav-link fakeLink"
+            onClick={() => {
+              history.push({ pathname: "/" })
+            }}>Home</Button>
+
+          <Button variant="outline-primary" className="nav-link fakeLink"
+            onClick={() => {
+              history.push({ pathname: "/wallet" })
+            }}>Wallet</Button>
+
+          <Button variant="outline-primary" className="nav-link fakeLink"
+            onClick={() => {
+              history.push({ pathname: "/community" })
+            }}>Community</Button>
+
 
           {
             (localStorage.getItem("cashtray_token") !== null) ?
               <li className="nav-item">
-                <Button className="nav-link fakeLink"
+                <Button variant="outline-primary" className="nav-link fakeLink"
                   onClick={() => {
                     localStorage.removeItem("cashtray_token")
                     history.push({ pathname: "/" })

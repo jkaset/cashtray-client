@@ -51,7 +51,7 @@ export const RewardList = (props) => {
   return (
     <>
       <Container>
-        <h1>Wallet</h1>
+      <h2 class="display-4">wallet</h2>
         <p>All-time savings: {allTimeTotal}</p>
         <p>Available cash: {availableCashAmount}</p>
         <p>Total Spent: {spentCashAmount}</p>
