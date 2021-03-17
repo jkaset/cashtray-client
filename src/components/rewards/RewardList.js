@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import { RewardContext } from "./RewardProvider"
 import "./Reward.css"
+import Button from 'react-bootstrap/Button';
 
 
 export const RewardList = (props) => {
@@ -91,10 +92,10 @@ export const RewardList = (props) => {
       </ul>
 
 
-      <button onClick={() => {
+      <Button variant="danger" onClick={() => {
         props.history.push("/wallet/create")
       }}>Create Reward
-      </button>
+      </Button>
 
     </>
   )

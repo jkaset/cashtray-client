@@ -4,6 +4,10 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/login"
 import { Register } from "./auth/register"
+import "bootswatch/dist/minty/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 
 export const Cashtray = (props) => (
   <>
