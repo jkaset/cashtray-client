@@ -25,19 +25,20 @@ export const NonsmokerList = () => {
   return (
     <>
       <h1>I QUIT</h1>
-      <h2>Timer</h2>
+      
       { timeClean < 1 ?
-        <h1>DAY 1! You Got This!</h1> :
-        <h1>{timeClean} DAYS STRONG</h1>
+        <h1>Timer: DAY 1! You Got This!</h1> :
+        <h1>Timer: {timeClean} DAYS STRONG</h1>
       }
-      <h2>Quit Date</h2>
+      <h2>Quit Date:  
 
-      <div>{date.toLocaleString("en-US", {
+      {date.toLocaleString("en-US", {
         year: "numeric",
         month: "numeric",
         day: "numeric",
         timeZone: "America/Chicago",
-      })}</div>
+      })}
+      </h2>
 
       {timeClean < 1 ? "" :
         <>
