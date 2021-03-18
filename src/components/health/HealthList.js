@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import Container from 'react-bootstrap/Container';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Spinner from 'react-bootstrap/Spinner';
 import "./Health.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLungs } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -31,6 +34,8 @@ export const HealthList = () => {
   return (
     <>
       <Container>
+        {timeClean > 0 ?
+        <>
         <h2 class="display-4 healthHeader">health</h2>
 
         <h4>carbon monoxide expelled</h4>
@@ -87,7 +92,7 @@ export const HealthList = () => {
           :
           <>
           <ProgressBar variant="success"  animated now={userBreath} label={`${userBreath}%`} />
-            <p>Smoking related bad breath should be gone in {14 - timeClean} days</p>
+            <p>In {14 - timeClean} days, smoking related bad breath should be gone.</p>
             </> }
         </div>
 
@@ -101,7 +106,7 @@ export const HealthList = () => {
           :
           <>
           <ProgressBar animated now={userCirculation} label={`${userCirculation}%`} />
-            <p>Your Circulation will be that of a nonsmoker's in {90 - timeClean} days</p>
+            <p>In {90 - timeClean} days, your circulation will be that of a nonsmoker.</p>
             </> }
         </div>
 
@@ -115,7 +120,7 @@ export const HealthList = () => {
           :
           <>
           <ProgressBar variant="info" animated now={userLung} label={`${userLung}%`} />
-            <p>Your immunity and lung function with be significantly improved in  {138 - timeClean} days</p>
+            <p>In  {138 - timeClean} days, your immunity and lung function with be significantly improved.</p>
             </> }
         </div>
 
@@ -129,10 +134,21 @@ export const HealthList = () => {
           :
           <>
           <ProgressBar variant="success" animated now={userHeart} label={`${userHeart}%`} />
-            <p>Your risk of heart disease will be about half of that of a smoker in {365 - timeClean} days</p>
+            <p>In {365 - timeClean} days, your risk of heart disease will be about half of that of a smoker.</p>
             </> }
         </div>
-
+        </> :
+        <>
+        <h2 class="display-4 healthHeader"> 
+       
+        your health starts improving today </h2>
+        
+        <p class="">Check back tomorrow for more stats!</p>
+        <FontAwesomeIcon class="lungs animate-flicker fa-2x" icon={faLungs} />
+       
+        
+        </>
+        }
       </Container>
     </>
   )

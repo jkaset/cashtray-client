@@ -75,39 +75,30 @@ export const NonsmokerList = (props) => {
 
             <p className="float-right">― Allen Carr, Quit Smoking Without Willpower</p>
             <p class="lead">
-            {/* <a class="btn btn-secondary btn-lg" href="/community" role="button">Join Your Community</a> */}
+              {/* <a class="btn btn-secondary btn-lg" href="/community" role="button">Join Your Community</a> */}
 
 
             </p>
 
           </div>
         }
-        <div class="card text-white bg-secondary  mb-3" >
-         
-          <div class="card-body">
-            <h4 class="card-title">Nonsmoker since: 
-            </h4>
-            <h4 class="card-title">{humanDate}
-            </h4>
-          </div>
-        </div>
 
-        <CardDeck>
-          {/* <div class="card text-white bg-primary  mb-3">
-          <div class="card-header">Nonsmoker Since</div>
-          <div class="card-body">
-            <h4 class="card-title">{date.toLocaleString("en-US", {
-              year: "numeric",
-              month: "numeric",
-              day: "numeric",
-              timeZone: "America/Chicago",
-            })}</h4>
-            <p class="card-text"></p>
-          </div>
-        </div> */}
 
-          {timeClean < 1 ? "" :
-            <>
+        {timeClean < 1 ? "" :
+          <>
+            <div class="card text-white bg-secondary  mb-3" >
+
+              <div class="card-body">
+                <h4 class="card-title">Nonsmoker since:
+                    </h4>
+                <h4 class="card-title">{humanDate}
+                </h4>
+              </div>
+            </div>
+            <CardDeck>
+
+
+
               <div class="card text-white bg-primary  mb-3" >
                 <div class="card-header">Time Saved</div>
                 <div class="card-body">
@@ -115,7 +106,7 @@ export const NonsmokerList = (props) => {
                     <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
                   }</h4>
                   <p class="card-text">freed up by not smoking</p>
-                 
+
                 </div>
               </div>
               <div class="card text-white bg-primary mb-3" >
@@ -134,8 +125,8 @@ export const NonsmokerList = (props) => {
                   <a href="/wallet" class="btn btn-light">Cashtray Wallet</a>
                 </div>
               </div>
-            </>
-          } </CardDeck>
+            
+          </CardDeck></>}
 
 
 
