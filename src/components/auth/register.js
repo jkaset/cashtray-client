@@ -61,84 +61,83 @@ export const Register = (props) => {
 
     return (
         <>
-        <Container>
-            <main style={{ textAlign: "center" }}>
+            <Container>
 
-                <dialog className="dialog dialog--password" ref={passwordDialog}>
-                    <div>Passwords do not match</div>
-                    <Button className="button--close" onClick={e => passwordDialog.current.close()}>Close</Button>
-                </dialog>
-
-                <form className="form--login" onSubmit={handleRegister}>
-                    <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
-                    <fieldset>
-                        <label htmlFor="firstName"> First Name </label>
-                        <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="lastName"> Last Name </label>
-                        <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
-                        <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="verifyPassword"> Verify Password </label>
-                        <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
-                    </fieldset>
+              
 
 
+            <h2 class="display-4 walletHeader">Welcome Nonsmoker</h2>
+                
+                    <h4>Let's get a few details</h4>
+
+                    <dialog className="dialog dialog--password" ref={passwordDialog}>
+                        <div>Passwords do not match</div>
+                        <Button className="button--close" onClick={e => passwordDialog.current.close()}>Close</Button>
+                    </dialog>
+
+                    <form className="form--login" onSubmit={handleRegister}>
+                        
+                        <fieldset>
+                            <label htmlFor="firstName"> </label>
+                            <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
+                        </fieldset>
+                        <fieldset>
+                            <label htmlFor="lastName">  </label>
+                            <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                        </fieldset>
+                        <fieldset>
+                            <label htmlFor="inputEmail"></label>
+                            <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
+                        </fieldset>
+                        <fieldset>
+                            <label htmlFor="inputPassword"> </label>
+                            <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
+                        </fieldset>
+                        <fieldset>
+                            <label htmlFor="verifyPassword"> </label>
+                            <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
+                        </fieldset>
+
+                        <fieldset>
+                            <label></label>
+                            <input ref={cigs_per_day} type="text" pattern="[0-9]*" name="cigs_per_day" required autoFocus className="form-control" placeholder="How many did/do you smoke per day" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label></label>
+                            <input ref={cigs_per_pack} type="text" pattern="[0-9]*" name="cigs_per_pack" required autoFocus className="form-control" placeholder="How many smokes are in a pack" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label></label>
+                            <input ref={price_per_pack} type="text" pattern="[0-9]*" name="price_per_pack" required autoFocus
+                                className="form-control" placeholder="Cost of one pack" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>When did you start smoking?</label>
+                            <input ref={start_smoking_year} type="date" name="start_smoking_year" required autoFocus
+                                className="form-control" />
+                        </fieldset>
+
+                        <fieldset>
+                            <label>Quit Date:</label>
+                            <input ref={quit_date} type="datetime-local" name="quit_date" required autoFocus className="form-control" placeholder="Quit Date" />
+                        </fieldset>
 
 
-
-                    <h2>Welcome Future Nonsmoker</h2>
-                    <p>Let's get a few details</p>
-
-
-                    <fieldset>
-                        <label>Quit Date:</label>
-                        <input ref={quit_date} type="datetime-local" name="quit_date" required autoFocus className="form-control" />
-                    </fieldset>
-
-                    <fieldset>
-                        <label>How many did/do you smoke per day:</label>
-                        <input ref={cigs_per_day} type="text" pattern="[0-9]*" name="cigs_per_day" required autoFocus className="form-control" />
-                    </fieldset>
-
-                    <fieldset>
-                        <label>How many smokes are in a pack:</label>
-                        <input ref={cigs_per_pack} type="text" pattern="[0-9]*" name="cigs_per_pack" required autoFocus className="form-control" />
-                    </fieldset>
-
-                    <fieldset>
-                        <label>Cost of one pack:</label>
-                        <input ref={price_per_pack} type="text" pattern="[0-9]*" name="price_per_pack" required autoFocus
-                        className="form-control" />
-                    </fieldset>
-
-                    <fieldset>
-                        <label>When did you start smoking?</label>
-                        <input ref={start_smoking_year} type="date" name="start_smoking_year" required autoFocus
-                        className="form-control" />
-                    </fieldset>
-
-                    <fieldset style={{
-                        textAlign: "center"
-                    }}>
-                        <Button className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
-                    </fieldset>
+                        <fieldset style={{
+                            textAlign: "center"
+                        }}>
+                            <Button className="btn btn-1 btn-sep icon-send" type="submit">Register</Button>
+                        </fieldset>
 
 
-                </form>
-                <section className="link--register">
-                    Already registered? <Link to="/login">Login</Link>
-                </section>
-            </main>
+                    </form>
+                    <section className="link--register">
+                        Already registered? <Link to="/login">Login</Link>
+                    </section>
+               
             </Container>
         </>
     )
