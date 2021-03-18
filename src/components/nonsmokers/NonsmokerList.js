@@ -24,6 +24,13 @@ export const NonsmokerList = (props) => {
   const date = new Date(singleNonsmoker.quit_date)
   console.log(date)
 
+  const humanDate = date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    timeZone: "America/Chicago",
+  })
+
   const timeClean = singleNonsmoker.time_smoke_free
 
   const cigsNotSmoked = singleNonsmoker.cigs_per_day * singleNonsmoker.time_smoke_free
@@ -40,7 +47,8 @@ export const NonsmokerList = (props) => {
         .then(() => { props.history.push("/") })
     }
   }
-
+  const daily_cost = ((singleNonsmoker.cigs_per_day) / (singleNonsmoker.cigs_per_pack)) * (singleNonsmoker.price_per_pack)
+  const allTimeTotal = ((singleNonsmoker.time_smoke_free) * daily_cost).toFixed(2)
 
   return (
     <>
@@ -67,13 +75,25 @@ export const NonsmokerList = (props) => {
 
             <p className="float-right">― Allen Carr, Quit Smoking Without Willpower</p>
             <p class="lead">
-              <a class="btn btn-secondary btn-lg" href="/wallet" role="button">Cashtray Wallet</a>
+            {/* <a class="btn btn-secondary btn-lg" href="/community" role="button">Join Your Community</a> */}
+
+
             </p>
+
           </div>
         }
+        <div class="card text-white bg-secondary  mb-3" >
+         
+          <div class="card-body">
+            <h4 class="card-title">Nonsmoker since: 
+            </h4>
+            <h4 class="card-title">{humanDate}
+            </h4>
+          </div>
+        </div>
 
-<CardDeck>
-        <div class="card text-white bg-primary  mb-3">
+        <CardDeck>
+          {/* <div class="card text-white bg-primary  mb-3">
           <div class="card-header">Nonsmoker Since</div>
           <div class="card-body">
             <h4 class="card-title">{date.toLocaleString("en-US", {
@@ -84,27 +104,38 @@ export const NonsmokerList = (props) => {
             })}</h4>
             <p class="card-text"></p>
           </div>
-        </div>
-        {timeClean < 1 ? "" :
-          <>
-            <div class="card text-white bg-primary  mb-3" >
-              <div class="card-header">Time Saved</div>
-              <div class="card-body">
-                <h4 class="card-title">{timeSaved > 59 ?
-                  <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
-                }</h4>
-                <p class="card-text">freed up by not smoking</p>
+        </div> */}
+
+          {timeClean < 1 ? "" :
+            <>
+              <div class="card text-white bg-primary  mb-3" >
+                <div class="card-header">Time Saved</div>
+                <div class="card-body">
+                  <h4 class="card-title">{timeSaved > 59 ?
+                    <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+                  }</h4>
+                  <p class="card-text">freed up by not smoking</p>
+                 
+                </div>
               </div>
-            </div>
-            <div class="card text-white bg-primary mb-3" >
-              <div class="card-header">Cigarettes unsmoked</div>
-              <div class="card-body">
-                <h4 class="card-title">{cigsNotSmoked}</h4>
-                <p class="card-text">"no thank you's"</p>
+              <div class="card text-white bg-primary mb-3" >
+                <div class="card-header">Cigarettes unsmoked</div>
+                <div class="card-body">
+                  <h4 class="card-title">{cigsNotSmoked}</h4>
+                  <p class="card-text">"no thank you's"</p>
+                  <a href="/health" class="btn btn-light">Health Stats</a>
+                </div>
               </div>
-            </div>
-          </>
-        } </CardDeck>
+              <div class="card text-white bg-primary mb-3" >
+                <div class="card-header">Cash Saved</div>
+                <div class="card-body">
+                  <h4 class="card-title">${allTimeTotal}</h4>
+                  <p class="card-text">better spent</p>
+                  <a href="/wallet" class="btn btn-light">Cashtray Wallet</a>
+                </div>
+              </div>
+            </>
+          } </CardDeck>
 
 
 

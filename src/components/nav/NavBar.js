@@ -28,6 +28,11 @@ export const NavBar = () => {
               history.push({ pathname: "/community" })
             }}>Community</Button>
 
+          <Button variant="outline-primary" className="nav-link fakeLink"
+            onClick={() => {
+              history.push({ pathname: "/health" })
+            }}>Health</Button>
+
 
           {
             (localStorage.getItem("cashtray_token") !== null) ?
