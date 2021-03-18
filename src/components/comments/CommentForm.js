@@ -1,12 +1,14 @@
 import React, { useContext, useRef, useState, useEffect } from "react"
 import { NonsmokerContext } from "../nonsmokers/NonsmokerProvider"
 import { CommentContext } from "./CommentProvider"
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 export const CommentForm = (props) => {
     const { addComment, comments, getComments } = useContext(CommentContext)
     const { getNonsmokerById, nonsmoker } = useContext(NonsmokerContext)
 
-    const [ comment, setComment ] = useState({})
+    const [comment, setComment] = useState({})
 
     const chosenRecipient = nonsmoker
 
@@ -19,51 +21,56 @@ export const CommentForm = (props) => {
         setComment(newComment)
     }
 
-    
-    useEffect(() =>{
+
+    useEffect(() => {
         getComments()
-       
+
     }, [])
-    
+
 
     const constructNewComment = () => {
-        
-            addComment({
-                recipient_id,
-                commenter_id,
-                comment: comment.comment,
-                // created_on is handled by class definition in models for Comment
-            })
+
+        addComment({
+            recipient_id,
+            commenter_id,
+            comment: comment.comment,
+            // created_on is handled by class definition in models for Comment
+        })
             .then(() => props.history.push(`/nonsmokers/${recipient_id}`))
-        }
-    
+    }
+
 
     return (
-        <form className="commentForm">
-            <h2 className="commentForm__title">{"New Comment"}</h2>
-                        
-            <fieldset>
-                <div className="form-group">
-                    <input type="text" id="comment" required autoFocus className="form-control"
-                        proptype="varchar"
-                        placeholder="some notes..." 
-                        defaultValue={comment.comment}
-                        onChange={handleControlledInputChange}    
-                    />
-                </div>
-            </fieldset>
+        <>
+            <Container>
+                <form className="commentForm">
+                    <h2 className="commentForm__title commentForm">{"New Comment"}</h2>
 
-            <button type="submit"
-                onClick={evt => {
-                    evt.preventDefault() // Prevent browser from submitting the form
-                    constructNewComment()
-                    
-                }}
-                className="btn btn-primary">
-                Make Comment
-            </button>
-        </form>
+                    <fieldset>
+                        <div className="form-group">
+                            <input type="text" id="comment" required autoFocus className="form-control"
+                                proptype="varchar"
+                                placeholder="kudos..."
+                                defaultValue={comment.comment}
+                                onChange={handleControlledInputChange}
+                            />
+                        </div>
+                    </fieldset>
+
+                    <Button type="submit" variant="secondary"
+                        onClick={evt => {
+                            evt.preventDefault() // Prevent browser from submitting the form
+                            constructNewComment()
+
+                        }}
+                        className="btn btn-primary">
+                        Submit</Button>
+         
+                </form>
+            </Container>
+        </>
     )
+
 }
 
 
@@ -94,12 +101,12 @@ export const CommentForm = (props) => {
 //             setComment(selectedComment)
 //         }
 //     }
-    
+
 //     useEffect(() =>{
 //         getComments()
-       
+
 //     }, [])
-    
+
 //     useEffect(() =>{
 //         getCommentInEditMode()
 //     }, [comments])
@@ -128,7 +135,7 @@ export const CommentForm = (props) => {
 //     return (
 //         <form className="commentForm">
 //             <h2 className="commentForm__title">{editMode ? "Update Comment" : "New Comment"}</h2>
-                        
+
 //             <fieldset>
 //                 <div className="form-group">
 //                     <input type="text" id="content" required autoFocus className="form-control"

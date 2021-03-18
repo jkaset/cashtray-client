@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { CommentContext } from "./CommentProvider"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import './Comment.css'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -25,27 +25,24 @@ export const Comment = ({ comment, props }) => {
     return (
         <>
             <Container>
-                <div className="comment">
-                    <div>"{comment.comment}" -{comment.commenter.user.first_name}</div>
-
-                    <div>{date.toLocaleString("en-US", {
+                <ul className="comment">
+                    <li>{date.toLocaleString("en-US", {
                         year: "numeric",
                         month: "numeric",
                         day: "numeric",
                         timeZone: "America/Chicago",
-                    })}</div>
-
-
-
+                    })}  "{comment.comment}" -{comment.commenter.user.first_name}                    
                     {comment.my_comment ? <>
-                        <Button className="miscbutton" onClick={() => {
+                        <Button className="miscbutton" variant="outline-success" onClick={() => {
                             confirmDeleteComment()
-                        }}>
-                            Delete
-                </Button>  </>
-                        : ""}
+                        }}> <FontAwesomeIcon icon={faTrashAlt} /></Button>  </>
+                        : ""}</li>
 
-                </div>
+
+
+
+
+                </ul>
             </Container>
         </>
     )

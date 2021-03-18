@@ -1,4 +1,19 @@
+
+
 .list-group-item:hover {
-  background-color: yellow;
+  background-color: rgb(246, 255, 254);
   text-decoration: none;
 }
+
+
+.miscbutton {
+  margin-left: 1%;
+}
+
+.communityHeader, .commentForm {
+  margin: 6% 0 3% 0;
+}
+
+/* .commentForm {
+  margin: 6
+} */

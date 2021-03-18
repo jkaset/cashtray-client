@@ -4,8 +4,12 @@
 //Oops button
 import React, { useContext, useEffect, useState } from "react"
 import { NonsmokerContext } from "./NonsmokerProvider"
+import "./Nonsmoker.css"
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import CardDeck from 'react-bootstrap/CardDeck';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 
 export const NonsmokerList = (props) => {
@@ -51,7 +55,7 @@ export const NonsmokerList = (props) => {
 
             <p className="float-right">― Allen Carr, The Easyway to Stop Smoking</p>
             <p class="lead">
-              <a class="btn btn-primary btn-lg" href="/community" role="button">Join the Nonsmoker Community</a>
+              <a class="btn btn-secondary btn-lg" href="/community" role="button">Join the Nonsmoker Community</a>
             </p>
           </div>
           :
@@ -63,13 +67,13 @@ export const NonsmokerList = (props) => {
 
             <p className="float-right">― Allen Carr, Quit Smoking Without Willpower</p>
             <p class="lead">
-              <a class="btn btn-primary btn-lg" href="/wallet" role="button">Cashtray Wallet</a>
+              <a class="btn btn-secondary btn-lg" href="/wallet" role="button">Cashtray Wallet</a>
             </p>
           </div>
         }
 
-
-        <div class="card border-secondary mb-3">
+<CardDeck>
+        <div class="card text-white bg-primary  mb-3">
           <div class="card-header">Nonsmoker Since</div>
           <div class="card-body">
             <h4 class="card-title">{date.toLocaleString("en-US", {
@@ -83,7 +87,7 @@ export const NonsmokerList = (props) => {
         </div>
         {timeClean < 1 ? "" :
           <>
-            <div class="card border-success mb-3" >
+            <div class="card text-white bg-primary  mb-3" >
               <div class="card-header">Time Saved</div>
               <div class="card-body">
                 <h4 class="card-title">{timeSaved > 59 ?
@@ -92,15 +96,16 @@ export const NonsmokerList = (props) => {
                 <p class="card-text">freed up by not smoking</p>
               </div>
             </div>
-            <div class="card border-danger mb-3" >
-              <div class="card-header">Cigarettes gone unsmoked</div>
+            <div class="card text-white bg-primary mb-3" >
+              <div class="card-header">Cigarettes unsmoked</div>
               <div class="card-body">
                 <h4 class="card-title">{cigsNotSmoked}</h4>
                 <p class="card-text">"no thank you's"</p>
               </div>
             </div>
           </>
-        }
+        } </CardDeck>
+
 
 
 
@@ -112,10 +117,10 @@ export const NonsmokerList = (props) => {
             }}> oops
         </Button>
         </div> */}
-        <Button variant="danger" className="miscbutton" onClick={() => {
+        <Button variant="danger" className="miscbutton oops float-right" onClick={() => {
           confirmOops()
         }}>
-          i fucked up </Button>
+          <FontAwesomeIcon icon={faExclamationTriangle} /></Button>
 
       </Container>
     </>
@@ -123,22 +128,3 @@ export const NonsmokerList = (props) => {
 }
 
 
-// useEffect(() => {
-//   getNonsmokers()
-
-// }, [])
-
-
-// return (
-//   <>
-//     {nonsmokers.map((nonsmoker)=>
-//       <span>
-//         {nonsmoker.quit_date}
-//       </span>
-//     )}
-
-
-{/* <div>
-      <h2>Time Smoke Free: {nonsmokers.time_smoke_free}</h2>
-      <p>Quit Date: {nonsmokers.quit_date}</p>
-    </div> */}

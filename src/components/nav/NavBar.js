@@ -12,20 +12,7 @@ export const NavBar = () => {
   return (
     <>
       <Container>
-        <Nav>
-          {/* <Nav.Item>
-            <Nav.Link href="/">Home</Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/wallet">Wallet</Nav.Link>
-          </Nav.Item>
-
-          <Nav.Item>
-            <Nav.Link href="/community">Community</Nav.Link>
-          </Nav.Item> */}
-
-
+        <Nav class="nav">
           <Button variant="outline-primary" className="nav-link fakeLink"
             onClick={() => {
               history.push({ pathname: "/" })
