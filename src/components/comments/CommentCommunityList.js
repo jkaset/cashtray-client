@@ -23,7 +23,7 @@ export const CommentCommunityList = ({ nonsmoker }) => {
     <>
       <Container>
 
-        <h2 class="display-4">community</h2>
+        <h2 class="display-4 communityHeader">community</h2>
 
         <ul class="list-group">
 

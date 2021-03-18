@@ -4,6 +4,11 @@ import { RewardContext } from "./RewardProvider"
 import "./Reward.css"
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import CardDeck from 'react-bootstrap/CardDeck';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 
 
 export const RewardList = (props) => {
@@ -47,48 +52,67 @@ export const RewardList = (props) => {
 
 
 
-
   return (
     <>
       <Container>
-      <h2 class="display-4">wallet</h2>
-        <p>All-time savings: {allTimeTotal}</p>
-        <p>Available cash: {availableCashAmount}</p>
-        <p>Total Spent: {spentCashAmount}</p>
-        <div>
-        <Button variant="danger" onClick={() => {
-          props.history.push("/wallet/create")
-        }}>Create Reward
-        </Button>
-        </div>
-        <h3>My Rewards List</h3>
-        <ul>
+        <h2 class="display-4 walletHeader">wallet</h2>
+
+
+        <CardDeck>
+
+          <div class="card text-white bg-primary  mb-3" >
+            <div class="card-body">
+              <h4 class="card-title">All-time Savings</h4>
+              <p class="card-text">{allTimeTotal}</p>
+            </div>
+          </div>
+          <div class="card text-white bg-primary  mb-3 " >
+            <div class="card-body  ">
+              <h4 class="card-title">Cash Available  </h4>
+              <p class="card-text">{availableCashAmount}</p>
+            </div>
+          </div>
+          <div class="card text-white bg-primary  mb-3" >
+
+            <div class="card-body ">
+              <h4 class="card-title">Total Cash Spent</h4>
+              <p class="card-text">{spentCashAmount}</p>
+            </div>
+          </div>
+        </CardDeck>
+
+        <h4>my rewards</h4>
+        <ul class="list-group">
           {
             rewards.map(reward => {
 
-              return <li key={reward.id} >
-                <div>{reward.reward_name} : {reward.reward_cost}</div>
-                
+              return <li class="list-group-item d-flex justify-content-between align-items-center" key={reward.id} >
+                <div>{reward.reward_name} :  ${reward.reward_cost}</div>  <div></div>
+
                 {reward.redeemed ?
                   <div></div> :
                   <>
-                    <Button type="submit"
-                      onClick={event => {
-                        event.preventDefault()
-                        if (availableCashAmount - reward.reward_cost > 0) {
-                          redeemReward(reward)
-                        } else {
-                          //alert user not enough cash
-                          alert("Not enough available Cash!")
-                        }
-                      }}> redeem </Button>
-                    <Button type="submit"
-                      onClick={event => {
-                        event.preventDefault()
+                    <ButtonGroup>
+                      <Button variant="outline-primary" type="submit"
+                        onClick={event => {
+                          event.preventDefault()
+                          if (availableCashAmount - reward.reward_cost > 0) {
+                            redeemReward(reward)
+                          } else {
+                            //alert user not enough cash
+                            alert("Not enough available Cash!")
+                         
+                           
+                         
+                          }
+                        }}> redeem </Button>
+                      <Button variant="outline-primary" type="submit"
+                        onClick={event => {
+                          event.preventDefault()
 
-                        deleteReward(reward)
+                          deleteReward(reward)
 
-                      }}> delete </Button> </>
+                        }}> <FontAwesomeIcon icon={faTrashAlt} /></Button> </ButtonGroup></>
                 }
               </li>
 
@@ -96,8 +120,14 @@ export const RewardList = (props) => {
         </ul>
 
 
+        <div>
+          <Button id="create" variant="secondary" onClick={() => {
+            props.history.push("/wallet/create")
+          }}>Create Reward
+        </Button>
+        </div>
 
-      </Container>
+      </Container >
     </>
   )
 }
