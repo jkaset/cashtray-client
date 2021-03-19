@@ -10,12 +10,13 @@ import Container from 'react-bootstrap/Container';
 import CardDeck from 'react-bootstrap/CardDeck';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { Form } from "react-bootstrap";
 
 
 export const NonsmokerList = (props) => {
   const { singleNonsmoker, getSingleNonsmoker, updateNonsmoker, refreshNonsmoker } = useContext(NonsmokerContext)
 
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(true)
   console.log(toggle)
 
 
@@ -105,31 +106,38 @@ export const NonsmokerList = (props) => {
                 <div class="card-body">
                   <h4 class="card-title">
 
-                     { toggle ?
-                    <>
-                      {timeSaved > 59 ?
-                        <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
-                      }
-                    </> :
-                    <>
-                      {timeSaved > 59 ?
-                        <div>{Math.round(timeSavedRadio / 60)} hours</div> : <div>Average time saved not smoking: {timeSavedRadio} minutes</div>
-                      }
-                    </>
-                  }
+                    {toggle ?
+                      <>
+                        {timeSaved > 59 ?
+                          <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+                        }
+                      </> :
+                      <>
+                        {timeSaved > 59 ?
+                          <div>{Math.round(timeSavedRadio / 60)} hours</div> : <div>Average time saved not smoking: {timeSavedRadio} minutes</div>
+                        }
+                      </>
+                    }
 
                   </h4>
                   <p class="card-text">freed up by not smoking</p>
                   <div>
-               
-                 
-                    <Button variant="light" onClick={() => setToggle(!toggle)}
-
-                    >Spirits?</Button>
 
 
+                    {/* <Button variant="light" onClick={() => setToggle(!toggle)}>Spirits?</Button> */}
 
-                    
+                    <div class="custom-control custom-checkbox ">
+                      <input type="checkbox" class="custom-control-input secondary" id="customCheck1" 
+                      value={!toggle}
+                     
+                     
+                      onChange={() => setToggle(!toggle)} />
+                      <label class="custom-control-label" for="customCheck1"> American Spirits smoker?</label>
+                    </div>
+
+
+
+
 
 
                   </div>
