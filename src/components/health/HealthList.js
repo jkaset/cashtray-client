@@ -42,7 +42,7 @@ export const HealthList = () => {
         <div>
           {userCarbon >= 100 ?
             <>
-            <ProgressBar animated now={100} label="100%" /> 
+            <ProgressBar class="prog" animated now={100} label="100%" /> 
             <p>Carbon Monoxide levels in body are eliminated </p> 
             </>
           :
