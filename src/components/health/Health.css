@@ -1,10 +1,12 @@
 .healthHeader{
-  margin: 8% 0 3% 0;
+  margin: 7% 0 3% 0;
 }
 
 .lungs {
   color: rgb(255, 214, 214);
 }
+
+
 
 @keyframes flickerAnimation {
   0%   { opacity:1; }

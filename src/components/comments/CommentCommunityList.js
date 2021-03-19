@@ -4,6 +4,7 @@ import { CommentForm } from "./CommentForm"
 import { Link } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import "./Comment"
@@ -22,17 +23,18 @@ export const CommentCommunityList = ({ nonsmoker }) => {
 
     <>
       <Container>
-
         <h2 class="display-4 communityHeader">community</h2>
-
-        <ul class="list-group">
+      
+        <Card class="card text-white bg-primary mb-3">
+        <ul class="list-group" variant="flush">
+        <h4 class="card-header text-white bg-secondary">Click a name to give kudos</h4>
 
           {nonsmokers.map((nonsmoker) =>
             <>
               <Link to={{
                 pathname: `/nonsmokers/${nonsmoker.id}`,
                 state: { chosenNonsmoker: nonsmoker }
-              }}>
+              }} style={{ textDecoration: 'none' }}>
                 <li class="list-group-item d-flex justify-content-between align-items-center" >
                   <FontAwesomeIcon icon={faComment} />  {nonsmoker.user.first_name} {nonsmoker.user.last_name}
 
@@ -47,8 +49,8 @@ export const CommentCommunityList = ({ nonsmoker }) => {
             </>
           )}
         </ul>
-
-
+                  </Card>
+       
       </Container>
     </>
 

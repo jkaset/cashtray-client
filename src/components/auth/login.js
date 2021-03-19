@@ -38,8 +38,9 @@ export const Login = () => {
     }
 
     return (
-        <Container>
-            <main className="container--login">
+        
+            <main className="container--login mainReg">
+        <Container >
                 <dialog className="dialog dialog--auth" ref={invalidDialog}>
                     <div>Email or password was not valid.</div>
                     <Button className="button--close" onClick={e => invalidDialog.current.close()}>Close</Button>
@@ -66,7 +67,7 @@ export const Login = () => {
                 <section className="link--register">
                     <Link to="/register">Not a member yet?</Link>
                 </section>
-            </main>
         </Container>
+            </main>
     )
 }

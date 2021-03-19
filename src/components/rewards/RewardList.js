@@ -57,7 +57,7 @@ export const RewardList = (props) => {
 
   return (
     <>
-      { time > 1 ?
+      { time >= 1 ?
         <>
           <Container>
             <h2 class="display-4 walletHeader">wallet</h2>

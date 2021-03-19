@@ -1,10 +1,24 @@
 
+.list-group-item {
+  color: rgb(85, 85, 85);
+}
 
 .list-group-item:hover {
   background-color: rgb(246, 255, 254);
-  text-decoration: none;
 }
 
+.list-group {
+ 
+  max-height: 400px;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.listClass {
+  width: 70%;
+}
+
+Link, link {text-decoration: none;}
 
 .miscbutton {
   margin-left: 1%;

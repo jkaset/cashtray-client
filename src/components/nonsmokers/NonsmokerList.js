@@ -124,15 +124,15 @@ export const NonsmokerList = (props) => {
                   <div>
 
 
-                    {/* <Button variant="light" onClick={() => setToggle(!toggle)}>Spirits?</Button> */}
+                    {/* <Button variant="light" onClick={() => setToggle(!toggle)}>Private?</Button> */}
 
                     <div class="custom-control custom-checkbox ">
-                      <input type="checkbox" class="custom-control-input secondary" id="customCheck1" 
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" 
                       value={!toggle}
                      
                      
                       onChange={() => setToggle(!toggle)} />
-                      <label class="custom-control-label" for="customCheck1"> American Spirits smoker?</label>
+                      <label class="custom-control-label" for="customCheck1"> American Spirit smoker?</label>
                     </div>
 
 
