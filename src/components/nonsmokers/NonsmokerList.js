@@ -15,7 +15,8 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 export const NonsmokerList = (props) => {
   const { singleNonsmoker, getSingleNonsmoker, updateNonsmoker, refreshNonsmoker } = useContext(NonsmokerContext)
 
-
+  const [toggle, setToggle] = useState(false)
+  console.log(toggle)
 
 
   useEffect(() => {
@@ -102,10 +103,36 @@ export const NonsmokerList = (props) => {
               <div class="card text-white bg-primary  mb-3" >
                 <div class="card-header">Time Saved</div>
                 <div class="card-body">
-                  <h4 class="card-title">{timeSaved > 59 ?
-                    <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
-                  }</h4>
+                  <h4 class="card-title">
+
+                     { toggle ?
+                    <>
+                      {timeSaved > 59 ?
+                        <div>{Math.round(timeSaved / 60)} hours</div> : <div>Average time saved not smoking: {timeSaved} minutes</div>
+                      }
+                    </> :
+                    <>
+                      {timeSaved > 59 ?
+                        <div>{Math.round(timeSavedRadio / 60)} hours</div> : <div>Average time saved not smoking: {timeSavedRadio} minutes</div>
+                      }
+                    </>
+                  }
+
+                  </h4>
                   <p class="card-text">freed up by not smoking</p>
+                  <div>
+               
+                 
+                    <Button variant="light" onClick={() => setToggle(!toggle)}
+
+                    >Spirits?</Button>
+
+
+
+                    
+
+
+                  </div>
 
                 </div>
               </div>
@@ -125,8 +152,8 @@ export const NonsmokerList = (props) => {
                   <a href="/wallet" class="btn btn-light">Cashtray Wallet</a>
                 </div>
               </div>
-            
-          </CardDeck></>}
+
+            </CardDeck></>}
 
 
 
