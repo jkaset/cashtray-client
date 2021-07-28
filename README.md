@@ -31,7 +31,7 @@ CashTray is created through React.js. It is styled with Boostrap React and the d
 
 Local Demo:
 1) git clone repository URL in your terminal
-2) go to the supply-us-API directory. Within that directory, run the json server by typing in the command "json-server -p 8088 -w database.json". This starts the json server. 
+2) go to the API directory. Within that directory, run the json server by typing in the command "json-server -p 8088 -w database.json". This starts the json server. 
 3) Go to the root directory and type in "npm install"
 4) Then from the root directory, type the command "npm run". From there it starts the App. 
 
