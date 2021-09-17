@@ -1,7 +1,11 @@
 # Overview:
 
-Cashtray is a single page application which allows ex-smokers to track their time and allocate new uses for money saved by quitting. 
+Cashtray is a single page application which allows ex-smokers to track their time and allocate new uses for money saved by quitting.
+<br>
+![2021-08-11 18 31 06](https://user-images.githubusercontent.com/65924619/133839507-581fb59e-4a10-41ce-9ee2-eefff7ca3c7a.gif)
 
+
+![2021-08-12 16 22 59](https://user-images.githubusercontent.com/65924619/133839544-c7d1af05-d038-4ba5-a92c-932eb8a3920e.gif)
 
 
 # MVP Features
@@ -21,6 +25,9 @@ Users can encourage other users in user-list comment board
 
 The number of days the user has gone without smoking creates progress rings for a number of health-improvement benchmarks
 The number of days the user has gone without smoking shows how many minutes they have saved not smoking/how many cigarettes they have not smoked with a special case for the extra time it takes to smoke an American Spirit brand cigarette
+
+![2021-08-12 16 29 33](https://user-images.githubusercontent.com/65924619/133839532-87b5b8d8-1935-4928-ae45-60a32729d908.gif)
+
 
 
 # Technologies:
